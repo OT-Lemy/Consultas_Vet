@@ -1,0 +1,4 @@
+﻿  DemoCIOOPA.cpp
+C:\Users\equipo-12\source\repos\DemoCIOOPA\DemoCIOOPA\DemoCIOOPA.cpp(100,1): error C2664: 'HWND CreateDialogParamW(HINSTANCE,LPCWSTR,HWND,DLGPROC,LPARAM)': el argumento 2 no puede convertirse de 'int' a 'LPCWSTR'
+C:\Users\equipo-12\source\repos\DemoCIOOPA\DemoCIOOPA\DemoCIOOPA.cpp(100,1): message : La conversión de un tipo entero a un tipo de puntero requiere reinterpret_cast, conversión de estilo de C o conversión de estilo de función
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\winuser.h(5000,1): message : vea la declaración de 'CreateDialogParamW'
