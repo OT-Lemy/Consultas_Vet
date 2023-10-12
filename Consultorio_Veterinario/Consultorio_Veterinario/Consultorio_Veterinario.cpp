@@ -158,7 +158,7 @@ void ImprimirListaCita() {
 			<< endl;
 		indice = indice->siguiente;
 	}
-	cout << "NULL" << endl;
+	cout << "No hay citas registradas." << endl;
 }
 
 void EliminarListaCita() {
@@ -170,35 +170,53 @@ void EliminarListaCita() {
 		delete temporal;
 	}
 }
-//int main(int argc, char** argv) {
-//	LISTACITAS.origen = NULL;
-//	LISTACITAS.fin = NULL;
-//	agregarCitaFinal(
-//		crearCita((char*)"Cliente1", (char*)"2023-10-02 10:00", (char*)"Mascota1", (char*)"Consulta general", 50.0, (char*)"Pendiente"));
-//		agregarCitaFinal(
-//		crearCita((char*)"Cliente2", (char*) "2023-10-03 14:30", (char*) "Mascota2", (char*) "Vacunación", 75.0, (char*) "Confirmada"));
-//	AgregarCitaInicio(
-//		crearCita((char*)"Cliente3", (char*) "2023-10-04 11:15", (char*) "Mascota3", (char*) "Cirugía", 150.0,(char*) "Cancelada"));
-//	ImprimirListaCita();
-//
-//	CITA* cita =
-//		EliminarCitaMedio((char*)"Cliente2");
-//	if (cita != NULL)
-//		delete cita;
-//	ImprimirListaCita();
-//	cita = EliminarCitaInicio();
-//	if (cita != NULL)
-//		delete cita;
-//	ImprimirListaCita();
-//	cita = EliminarCitaFinal();
-//	if (cita != NULL)
-//		delete cita;
-//		ImprimirListaCita();
-//
-//	EliminarListaCita();
-//	system("pause");
-//	return 0;
-//}
+
+void EditarCita(char* bNombre) {
+
+	NODOCITA* cita = buscarNombre(bNombre);
+
+	if (cita == NULL) {
+		cout << "El cliente no existe." << endl;
+		return;
+	}
+
+	char nombreCliente[50];
+	char nombreMascota[50];
+	char fechaHora[50];
+	char motivo[100];
+	float costo;
+	char status[50];
+
+	cout << "Ingrese el nombre del cliente: " << endl;
+	cin.ignore();
+	cin.getline(nombreCliente, 50);
+	cout << "Ingrese el nombre de la mascota: " << endl;
+	cin.ignore();
+	cin.getline(nombreMascota, 50);
+	cout << "Ingrese la nueva fecha y hora de la consulta: " << endl;
+	cin.ignore();
+	cin.getline(fechaHora, 50);
+	cout << "Ingrese el nuevo motivo de la consulta: " << endl;
+	cin.ignore();
+	cin.getline(motivo, 100);
+	cout << "Ingrese el nuevo costo de la consulta: ";
+	cin >> costo;
+	cout << "Ingrese el nuevo estatus de la consulta: ";
+	cin.ignore();
+	cin.getline(status, 100);
+
+}
+
+void EliminarCita(char* bNombre) {
+
+	CITA* cita = EliminarCitaMedio(bNombre);
+	if (cita == NULL) {
+		cout << "El cliente no existe." << endl;
+		return;
+	}
+	delete cita;
+	cout << "Se elimino la cita exitosamente" << endl;
+}
 
 int main()
 {
@@ -247,13 +265,33 @@ int main()
 			LISTACITAS.origen = NULL;
 			LISTACITAS.fin = NULL;
 			agregarCitaFinal(crearCita(nombreCliente, fechaHora, nombreMascota, motivo, costo, status));
-			cout << "Producto agregado al inventario." << endl;
+			cout << "Cita agregada a la agenda." << endl;
 		}
 
 
 		else if (opcion == 2)
 		{
 			ImprimirListaCita();
+		}
+		else if (opcion == 3)
+		{
+			char nombreCliente[50];
+
+			cout << "Ingrese el nombre del cliente a editar";
+			cin.ignore();
+			cin.getline(nombreCliente, 50);
+
+			EditarCita(nombreCliente);
+		}
+
+		else if (opcion == 4)
+		{
+			char nombreCliente[50];
+			cout << "Ingrese el nombre del cliente cuya cita desea eliminar: ";
+			cin.ignore();
+			cin.getline(nombreCliente, 50);
+
+			EliminarCita(nombreCliente);
 		}
 		else if (opcion == 5)
 		{
@@ -267,3 +305,4 @@ int main()
 
 	return 0;
 }
+
