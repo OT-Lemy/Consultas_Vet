@@ -6,12 +6,12 @@ using namespace std;
 
 // Definición de la estructura Cita
 struct CITA {
-	char fechaHora[50];
-	char nombreCliente[50];
-	char nombreMascota[50];
-	char motivo[50];
+	char fechaHora[100];
+	char nombreCliente[100];
+	char nombreMascota[100];
+	char motivo[100];
 	float costo;
-	char status[50];
+	char status[100];
 };
 
 // Definición de la estructura NODOCITA para apuntar a una cita
@@ -26,7 +26,7 @@ struct CITAS {
 	NODOCITA* fin;
 }LISTACITAS;
 
-CITA* crearCita(char nombreCliente[50], char fechaHora[50], char nombreMascota[50], char motivo[50], float costo, char status[50]) {
+CITA* crearCita(char nombreCliente[100], char fechaHora[100], char nombreMascota[100], char motivo[100], float costo, char status[100]) {
 	CITA* nuevo = new CITA;
 	nuevo->costo = costo;
 	strcpy_s(nuevo->fechaHora, fechaHora);
@@ -148,18 +148,19 @@ CITA* EliminarCitaMedio(char* nombre) {
 void ImprimirListaCita() {
 	NODOCITA* indice = LISTACITAS.origen;
 	while (indice != NULL) {
-		cout << "("
-			<< indice->cita->nombreCliente << ","
-			<< indice->cita->costo << ","
-			<< indice->cita->fechaHora << ","
-			<< indice->cita->motivo << ","
-			<< indice->cita->nombreMascota << ","
-			<< indice->cita->status << "," ")->"
-			<< endl;
+		cout << "(" << endl;
+		cout << "cliente: " << indice->cita->nombreCliente << endl;
+		cout << "Costo: " << indice->cita->costo << endl;
+		cout << "Fecha: " << indice->cita->fechaHora << endl;
+		cout << "Motivo: " << indice->cita->motivo << endl;
+		cout << "Mascota: " << indice->cita->nombreMascota << endl;
+		cout << "Estatus: " << indice->cita->status << endl;
+		cout << ")" << endl;
 		indice = indice->siguiente;
 	}
-	cout << "NULL" << endl;
 }
+
+
 
 void EliminarListaCita() {
 	while (LISTACITAS.origen != NULL) {
@@ -172,6 +173,7 @@ void EliminarListaCita() {
 }
 
 void EditarCita(char* nombreCliente) {
+
 	NODOCITA* cita = buscarNombre(nombreCliente);
 	if (cita == NULL) {
 		cout << "La cita no se encontró." << endl;
@@ -179,11 +181,11 @@ void EditarCita(char* nombreCliente) {
 	}
 
 	// Solicitar al usuario los nuevos valores
-	char nuevoNombreMascota[50];
-	char nuevaFechaHora[50];
-	char nuevoMotivo[50];
+	char nuevoNombreMascota[100];
+	char nuevaFechaHora[100];
+	char nuevoMotivo[100];
 	float nuevoCosto;
-	char nuevoStatus[50];
+	char nuevoStatus[100];
 
 	cout << "Ingrese el nuevo nombre de la mascota: ";
 	cin.ignore();
@@ -223,35 +225,24 @@ void EliminarCitaPorNombre(char* nombreCliente) {
 	}
 }
 
-//int main(int argc, char** argv) {
-//	LISTACITAS.origen = NULL;
-//	LISTACITAS.fin = NULL;
-//	agregarCitaFinal(
-//		crearCita((char*)"Cliente1", (char*)"2023-10-02 10:00", (char*)"Mascota1", (char*)"Consulta general", 50.0, (char*)"Pendiente"));
-//		agregarCitaFinal(
-//		crearCita((char*)"Cliente2", (char*) "2023-10-03 14:30", (char*) "Mascota2", (char*) "Vacunación", 75.0, (char*) "Confirmada"));
-//	AgregarCitaInicio(
-//		crearCita((char*)"Cliente3", (char*) "2023-10-04 11:15", (char*) "Mascota3", (char*) "Cirugía", 150.0,(char*) "Cancelada"));
-//	ImprimirListaCita();
-//
-//	CITA* cita =
-//		EliminarCitaMedio((char*)"Cliente2");
-//	if (cita != NULL)
-//		delete cita;
-//	ImprimirListaCita();
-//	cita = EliminarCitaInicio();
-//	if (cita != NULL)
-//		delete cita;
-//	ImprimirListaCita();
-//	cita = EliminarCitaFinal();
-//	if (cita != NULL)
-//		delete cita;
-//		ImprimirListaCita();
-//
-//	EliminarListaCita();
-//	system("pause");
-//	return 0;
-//}
+bool esTextoValido(const std::string& str) {
+	for (char c : str) {
+		if (!std::isalpha(c)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+// Validar si una cadena contiene solo números
+bool esNumeroValido(const std::string& str) {
+	for (char c : str) {
+		if (!std::isdigit(c)) {
+			return false;
+		}
+	}
+	return true;
+}
 
 int main()
 {
@@ -270,26 +261,22 @@ int main()
 		int opcion;
 		cin >> opcion;
 		
-
 		if (opcion == 1)
 		{
-			char nombreCliente[50];
-			char nombreMascota[50];
-			char fechaHora[50];
+			char nombreCliente[100];
+			char nombreMascota[100];
+			char fechaHora[100];
 			char motivo[100];
 			float costo;
-			char status[50];
+			char status[100];
 			cout << "Ingrese el nombre del cliente: " << endl;
 			cin.ignore();
-			cin.getline(nombreCliente, 50);
+			cin.getline(nombreCliente, 100);
 			cout << "Ingrese el nombre de la mascota: " << endl;
-			cin.ignore();
-			cin.getline(nombreMascota, 50);
+			cin.getline(nombreMascota, 100);
 			cout << "Ingrese la fecha y hora de la consulta: " << endl;
-			cin.ignore();
-			cin.getline(fechaHora, 50);
+			cin.getline(fechaHora, 100);
 			cout << "Ingrese el motivo de la consulta: " << endl;
-			cin.ignore();
 			cin.getline(motivo, 100);
 			cout << "Ingrese el costo de la consulta: ";
 			cin >> costo;
@@ -297,31 +284,27 @@ int main()
 			cin.ignore();
 			cin.getline(status, 100);
 
-			LISTACITAS.origen = NULL;
-			LISTACITAS.fin = NULL;
 			agregarCitaFinal(crearCita(nombreCliente, fechaHora, nombreMascota, motivo, costo, status));
 			cout << "Producto agregado al inventario." << endl;
 		}
+		else if (opcion == 2)
+		{
+			ImprimirListaCita();
+		}
 		else if (opcion == 3) {
-			char nombreCliente[50];
+			char nombreCliente[100];
 			cout << "Ingrese el nombre del cliente de la cita que desea editar: ";
 			cin.ignore();
 			cin.getline(nombreCliente, 50);
 			EditarCita(nombreCliente);
 		}
 		else if (opcion == 4) {
-			char nombreCliente[50];
+			char nombreCliente[100];
 			cout << "Ingrese el nombre del cliente de la cita que desea eliminar: ";
 			cin.ignore();
 			cin.getline(nombreCliente, 50);
 			EliminarCitaPorNombre(nombreCliente);
 		}
-
-		else if (opcion == 2)
-		{
-			ImprimirListaCita();
-		}
-
 		else if (opcion == 5)
 		{
 			break; // Salir del programa
