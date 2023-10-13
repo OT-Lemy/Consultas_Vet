@@ -1,6 +1,39 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <Windows.h>
+
+// Variable global
+HINSTANCE hInstance;
+
+// La etiqueta "WINAPI" ayuda a optimizar la memoria, indica al compilador dónde va a reservar espacio.
+
+// hinst = direccion de memoria de nuestra app ejecutada.
+
+// Hprev ayuda a no tener la app abierta muchas veces.
+
+BOOL CALLBACK fLogin_Vet(HWND hwnd, UINT msg, WPARAM wParam, LPARAM Lparam){ //Función CALLBACK para leer msjs
+
+	// 8:22 pm
+
+};
+
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hprev, PSTR cmdline, int cshow){ //Función WINAPI
+
+	HWND hLoginVet = CreateDialog(hInst,MAKEINTRESOURCE(VET_LOGIN),NULL,CALLBACK); //<<<------------- No entiendo por qué me marca error Q_Q
+
+		MSG msg;
+
+		ZeroMemory(&msg, sizeof (MSG));
+
+		ShowWindow(hLoginVet, cshow);
+
+		while (GetMessage(&msg, hLoginVet, NULL, NULL)) {
+			
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+};
 
 using namespace std;
 
@@ -36,6 +69,7 @@ CITA* crearCita(char nombreCliente[50], char fechaHora[50], char nombreMascota[5
 	strcpy_s(nuevo->status, status);
 	return nuevo;
 }
+
 NODOCITA* nuevoNodo(CITA* cita) {
 	NODOCITA* nodo = new NODOCITA;
 	nodo->cita = cita;
@@ -54,6 +88,7 @@ NODOCITA* buscarNombre(char* buscarNomCliente) {
 	}
 	return indice;
 }
+
 void AgregarCitaInicio(CITA* cita) {
 	NODOCITA* nodo = nuevoNodo(cita);
 	if (LISTACITAS.origen == NULL) {
@@ -80,6 +115,7 @@ void agregarCitaFinal(CITA* cita) {
 		nodo->siguiente = NULL;
 	}
 }
+
 void AgregarCitaMedio(char* buscar, CITA* cita) {
 	NODOCITA* busqueda = buscarNombre(buscar);
 	if (busqueda == NULL)
@@ -103,6 +139,7 @@ CITA* EliminarCitaInicio() {
 	delete anterior;
 	return cita;
 }
+
 CITA* EliminarCitaFinal() {
 	if (LISTACITAS.origen == NULL)
 		return NULL;
@@ -145,6 +182,7 @@ CITA* EliminarCitaMedio(char* nombre) {
 	delete busqueda;
 	return cita;
 }
+
 void ImprimirListaCita() {
 	NODOCITA* indice = LISTACITAS.origen;
 	while (indice != NULL) {
