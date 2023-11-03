@@ -225,14 +225,16 @@ void EliminarCitaPorNombre(char* nombreCliente) {
 	}
 }
 
-bool esTextoValido(const std::string& str) {
-	for (char c : str) {
-		if (!std::isalpha(c)) {
+//Validar canedas de texto
+bool esTextoValido(const std::string& nombre) {
+	for (char c : nombre) {
+		if (!std::isalpha(c) && c != ' ') {
 			return false;
 		}
 	}
 	return true;
 }
+
 
 // Validar si una cadena contiene solo números
 bool esNumeroValido(const std::string& str) {
@@ -272,17 +274,32 @@ int main()
 			cout << "Ingrese el nombre del cliente: " << endl;
 			cin.ignore();
 			cin.getline(nombreCliente, 100);
+
+			if (!esTextoValido(nombreCliente)) {
+				cout << "El nombre no es válido. Debe contener solo letras y espacios, Ultima oportunidad" << endl;
+				continue;
+			}
+	
 			cout << "Ingrese el nombre de la mascota: " << endl;
 			cin.getline(nombreMascota, 100);
+
 			cout << "Ingrese la fecha y hora de la consulta: " << endl;
 			cin.getline(fechaHora, 100);
+
 			cout << "Ingrese el motivo de la consulta: " << endl;
 			cin.getline(motivo, 100);
+
 			cout << "Ingrese el costo de la consulta: ";
 			cin >> costo;
+
 			cout << "Ingrese el estatus de la consulta: ";
 			cin.ignore();
 			cin.getline(status, 100);
+
+			if (!esTextoValido(status)) {
+				cout << "El Status no es válido. Debe contener solo letras y espacios, Repita el proceso" << endl;
+				continue;
+			}
 
 			agregarCitaFinal(crearCita(nombreCliente, fechaHora, nombreMascota, motivo, costo, status));
 			cout << "Producto agregado al inventario." << endl;

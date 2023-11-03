@@ -2,6 +2,15 @@
 // Archivo de inclusión generado de Microsoft Visual C++.
 // Usado por DemoCIOOPA.rc
 //
+/*
+M->MENU: Acerca,etc
+I->ICONOS: Logo, etc
+C->CONTROLES: Botones, Ok, Agregar, etc
+S->CADENAS RECURSO: Titulos, Bienvenido, etc
+D->DIALOGO: configuraciones, etc
+R->RECURSO: Cuadros de texto, barra menu, etc
+*/
+
 #define IDC_MYICON                      2
 #define IDD_DEMOCIOOPA_DIALOG           102
 #define IDS_APP_TITLE                   103
@@ -20,7 +29,7 @@
 #define REGISTRAR                       1001
 #define PRINCIPAL_MOVER                 1002
 #define VET_NOMBRE                      1007
-#define IDC_BUTTON1                     1008
+#define IDC_EDITAR_CITA                 1008
 #define IDC_BUTTON2                     1009
 #define IDC_DATETIMEPICKER1             1010
 #define IDC_DATETIMEPICKER2             1011
@@ -30,10 +39,20 @@
 #define IDC_RADIO1                      1015
 #define IDC_RADIO2                      1016
 #define IDC_RADIO3                      1017
-#define ID_ARCHIVO_OPCION2              32771
-#define ID_OPCION1                      32772
-#define ID_ARCHIVO_VENTANAEDIT          32773
-#define ID_ARCHIVO_VENTANAEJEMPLO8      32774
+#define VET_COSTO						1018
+#define VET_MOTIVO						1019
+#define VET_STATUS						1020
+
+		
+#define IDR_ARCHIVO_AGREGAR             32771
+#define IDR_ARCHIVO_EDITAR				32772
+#define IDR_ARCHIVO_ELIMINAR			32773
+#define IDR_ARCHIVO_MOSTRAR				32774
+#define IDC_VET_AGREGAR					32775
+#define VET_NOMBRE_MASCOTA				32776
+#define IDC_ESPECIES					32777
+#define IDC_AGREGAR_CITA				1021
+
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
